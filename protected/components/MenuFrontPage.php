@@ -5,7 +5,7 @@ class MenuFrontPage extends CWidget{
     
     public function run(){
         $criteria = new CDbCriteria();
-        $criteria->condition = "status = 1 AND type_id = 1 AND parent_id = 0 AND id <= 20";
+        $criteria->condition = "status = 1 AND type_id = 1 AND parent_id = 0";
         $criteria->order = "weight";        
         $menu = Menu::model()->findAll($criteria);
         

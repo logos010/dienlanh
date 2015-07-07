@@ -8,37 +8,36 @@ class ProductController extends ControllerBase {
         ));
     }
 
-    public function actionIndex() {        
-        $products = Product::model()->findAll(array(
-            'condition' => 'status = 1',
-            'order' => 'RAND()',
-            'limit' => '6'
+    public function actionIndex() {
+        $products = Product::model()->with(array(
+                    'pTerm' => array('condition' => 'tid = 1')
+                ))->findAll(array(
+            'condition' => 't.status = 1',
         ));
-        
+
         $currentProducts = null;
         foreach ($products as $k => $v)
-            $currentProducts .= $v->id.",";
-        
+            $currentProducts .= $v->id . ",";
+
         $currentProducts = rtrim($currentProducts, ',');
-        
+
         $otherProducts = Product::model()->findAll(array(
-            'condition' => 'id NOT IN ('.$currentProducts.') AND status = 1',
+            'condition' => 'id NOT IN (' . $currentProducts . ') AND status = 1',
         ));
-        
-        //get promotion products
+
+        //get newest products
         $criteria = new CDBCriteria();
-//        $criteria->condition = "promote = 1 AND status = 1";
-//        $criteria->order = "RAND()";
-        $criteria->condition = "position NOT IN (1,2) AND status = 1";
-        $criteria->limit = 2;
-        $promote = Promotion::model()->findAll($criteria);
-                
+        $criteria->condition = "MONTH(create_time) =:currentMonth ";
+        $criteria->params = array(':currentMonth' => date('n', time()));
+        $criteria->limit = 10;
+        $lastProduct = Product::model()->findAll($criteria);
+
         $this->render('index', array(
             'products' => $products,
             'others' => $otherProducts,
-            'promote' => $promote
+            'lastProduct' => $lastProduct
         ));
-    }    
+    }
 
     /**
      * Performs the AJAX validation.
@@ -55,12 +54,12 @@ class ProductController extends ControllerBase {
         $product = Product::model()->findAll(array(
             'condition' => 'status = 1',
         ));
-       
-        $grid = $this->generateProduct($product);        
+
+        $grid = $this->generateProduct($product);
         return $grid;
     }
-    
-    public function generateProduct($product){
+
+    public function generateProduct($product) {
         $grid = NULL;
         if (!is_null($product)) {
             foreach ($product as $k => $v) {
@@ -110,10 +109,12 @@ class ProductController extends ControllerBase {
     }
 
     public function actionDetail($pid) {
-        cssFile(App()->theme->baseUrl."/css/bootstrap.min.css");
-        scriptFile(App()->theme->baseUrl.'/js/bootstrap.js');
-        scriptFile(App()->theme->baseUrl."/js/bootbox.min.js");
-        
+        cssFile(App()->theme->baseUrl . "/css/easy-responsive-tabs.css");
+        cssFile(App()->theme->baseUrl . "/css/bootstrap.min.css");
+        cssFile(App()->theme->baseUrl . "/css/etalage.css");
+        scriptFile(App()->theme->baseUrl . '/js/bootstrap.js');
+        scriptFile(App()->theme->baseUrl . "/js/easyResponsiveTabs.js");
+                
         $product = Product::model()->findByPk($pid);
 
         $gallery = ProductGallery::model()->findAll(array(
@@ -122,35 +123,28 @@ class ProductController extends ControllerBase {
                 ':pid' => $pid,
             )
         ));
-
-        //load product's reviews
-        $review = ProductReview::model()->findAll(array(
-            'select' => 'name, content, SUBSTRING( create_time, 1, 10 ) AS date, SUBSTRING( create_time, 12 ) AS time',
-            'condition' => 'pid = :pid',
-            'params' => array(':pid' => $pid),
-            'order' => 'create_time DESC'
-        ));
-         
+        
         //load recommend product
         $criteria = new CDbCriteria();
         //$criteria->condition = "t.id != ".intval($pid); 
-        
+
         $prodCate = $product->pTerm;
-        foreach ($prodCate as $k => $v){
-            $criteria->addCondition('pTerm.id = '.$v->id, 'or');
+        foreach ($prodCate as $k => $v) {
+            $criteria->addCondition('pTerm.id = ' . $v->id, 'or');
         }
-        
         $criteria->group = "t.id";
         $criteria->having = "t.id <> " . $pid;
-                    
-        $recommendProducts = Product::model()->with('pTerm')->findAll($criteria);
-                        
+        
+        //get other products
+        $criteria = new CDbCriteria();
+        $criteria->condition = "id <> " . $pid;
+        $criteria->limit = "3";
+        $otherProducts = Product::model()->findAll($criteria);
+        
         $this->render('detail', array(
             'product' => $product,
             'gallery' => $gallery,
-            'review' => $review,
-            'recommendProducts' => $recommendProducts,
-            'numOfReview' => count($review)
+            'other' => $otherProducts
         ));
     }
 
@@ -161,18 +155,18 @@ class ProductController extends ControllerBase {
                 ':tid' => $tid,
             )
         ));
-        
+
         //get current product id within the category
         $currentProducts = null;
         foreach ($product as $k => $v)
-            $currentProducts .= $v->id.",";
+            $currentProducts .= $v->id . ",";
         $currentProducts = rtrim($currentProducts, ',');
 
         $randomProducts = Product::model()->findAll(array(
-            'condition' => 'id NOT IN ('.$currentProducts.')',
+            'condition' => 'id NOT IN (' . $currentProducts . ')',
             'order' => 'create_time DESC'
         ));
-                
+
         $this->render('loadProductByCate', array(
             'products' => $product,
             'otherProducts' => $randomProducts
@@ -193,31 +187,32 @@ class ProductController extends ControllerBase {
             var_dump($prodReview->getErrors());
             echo 'saving error';
         }
-    }    
+    }
 
-    public function actionLoadProductByPrice(){
+    public function actionLoadProductByPrice() {
         $lowPrice = isset($_POST['lowPrice']) ? $_POST['lowPrice'] : 0;
-        $highPrice =  isset($_POST['highPrice']) ? $_POST['highPrice'] : 0;
-        
+        $highPrice = isset($_POST['highPrice']) ? $_POST['highPrice'] : 0;
+
         $criteria = new CDbCriteria();
         $criteria->addBetweenCondition('price', $lowPrice, $highPrice);
-        
+
         $product = Product::model()->findAll($criteria);
         $grid = $this->generateProduct($product);
-        echo $grid;    
+        echo $grid;
     }
-    
-    public function actionSearchProduct(){
+
+    public function actionSearchProduct() {
         $searchKey = isset($_POST['searchKey']) ? $_POST['searchKey'] : '';
-        
+
         $criteria = new CDbCriteria();
         $criteria->compare('name', $searchKey, true, 'OR');
         $criteria->compare('price', $searchKey, true, 'OR');
         $criteria->compare('sku', $searchKey, true, 'OR');
         $criteria->compare('description', $searchKey, true, 'OR');
         $criteria->compare('detail', $searchKey, true, 'OR');
-                
+
         $product = Product::model()->findAll($criteria);
         echo $grid = (!is_null($product)) ? $grid = $this->generateProduct($product) : '';
     }
+
 }

@@ -26,17 +26,17 @@ class Product extends ProductBase {
             if (!is_dir($uri)) {
                 (mkdir($uri . '/original', 0777, true));
                 (mkdir($uri . '/medium', 0777, true));                
-                //mkdir($uri . '/small', 0777, true);
+                (mkdir($uri . '/small', 0777, true));
             }
             $img = new Image($image->tempName);            
             $img->save($uri . '/original/' . $name);
 //            $img->save(BASE_URL . "/upload/" . date('Y/m') . '/original/' . $name);
             list($width, $height, $type, $attr) = getimagesize($image->tempName);
-            $img->resize(360, 480, Image::WIDTH);
+            $img->resize(MAIN_PROD_MEDIUM_W, MAIN_PROD_MEDIUM_H, Image::WIDTH);
             $img->save($uri . '/medium/' . $name);
 //            $img->save(BASE_URL . "/upload/" . date('Y/m') . '/medium/' . $name);
-            //$img->resize(253, 253);
-            //$img->save($uri . '/small/' . $name);
+            $img->resize(PRODUCT_SMALL_W, PRODUCT_SMALL_H);
+            $img->save($uri . '/small/' . $name);
 
 //            $this->image = $uri . '/medium/' . $name;
             $this->image = BASE_URL . "/upload/" . date('Y/m') . '/medium/' . $name;
