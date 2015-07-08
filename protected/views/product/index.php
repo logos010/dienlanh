@@ -36,20 +36,32 @@ $this->menu = array(
     <div class="content_bottom">
         <div class="wrap">
             <div class="content-bottom-left">
-                <div class="categories">
+                <div id='cssmenu' class="categories">
+                    <?php
+                    $this->widget('application.components.MenuVerticalWidget', array(
+                        'menuCate' => isset($_GET['tid']) ? $_GET['tid'] : null,
+                    ));
+                    ?>
                     <ul>
                         <h3>Browse All Categories</h3>
-                        <li><a href="#">Appliances</a></li>
-                        <li><a href="#">Sports Equipments</a></li>
-                        <li><a href="#">Computers & Electronics</a></li>
-                        <li><a href="#">Office supplies</a></li>
-                        <li><a href="#">Health & Beauty</a></li>
-                        <li><a href="#">Home & Garden</a></li>
-                        <li><a href="#">Apparel</a></li>
-                        <li><a href="#">Toys & Games</a></li>
-                        <li><a href="#">Automotive</a></li>
+                        <li>
+                            <a href='http://google.com'><span>Products</span></a>
+                            <ul>
+                                <li><a href='http://google.com'>Widgets</a></li>
+                                <li><a href='#'>Menus</a></li>
+                                <li><a href='#'>Products</a></li>
+                            </ul>
+                        </li>
+                        <li><a href='#'><span>Company</span></a>
+                            <ul>
+                                <li><a href='#'>About</a></li>
+                                <li><a href='#'>Location</a></li>
+                            </ul>
+                        </li>
+                        <li><a href='#'><span>Contact</span></a></li>
                     </ul>
-                </div>		
+                </div>
+                	
                 <div class="buters-guide">
                     <h3>Buyers Guide</h3>
                     <p><span>We want you to be happy with your purchase.</span></p>	
@@ -76,30 +88,30 @@ $this->menu = array(
             <!-- content product grid -->
             <div class="content-bottom-right">
                 <h3>Thông Tin Sản Phẩm</h3>
-                <?php 
-                    $i=1; 
-                    foreach ($products as $k => $v):
-                        if($i%3 == 0):
-                ?>
+                <?php
+                $i = 1;
+                foreach ($products as $k => $v):
+                    if ($i % 3 == 0):
+                        ?>
                         <div class="section group">
-                    <?php endif; ?>
-                            <div class="grid_1_of_4 images_1_of_4">
-                                <h4><a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>"><?php echo $v->name; ?></a></h4>
-                                <a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>"><img src="<?php echo $v->image ?>" alt="<?php echo $v->alias;?>" /></a>
-                                <div class="price-details">
-                                    <div class="price-number">
-                                        <p><span class="rupees">$839.93 </span></p>
-                                    </div>
-                                    <div class="add-cart">								
-                                        <h4><a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>">More Info</a></h4>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>					 
-                            </div>
-                <?php if(($i%3) == 0): ?>
+                        <?php endif; ?>
+                        <div class="grid_1_of_4 images_1_of_4">
+                            <h4><a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>"><?php echo $v->name; ?></a></h4>
+                            <a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>"><img src="<?php echo $v->image ?>" alt="<?php echo $v->alias; ?>" /></a>
+                            <div class="price-details">
+                                <div class="price-number">
+                                    <p><span class="rupees">$839.93 </span></p>
+                                </div>
+                                <div class="add-cart">								
+                                    <h4><a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>">More Info</a></h4>
+                                </div>
+                                <div class="clear"></div>
+                            </div>					 
                         </div>
-                <?php endif; ?>
-                <?php $i++; ?>
+                        <?php if (($i % 3) == 0): ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php $i++; ?>
                 <?php endforeach; ?>
             </div>
             <div class="clear"></div>

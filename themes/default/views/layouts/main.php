@@ -11,10 +11,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
     <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<?php echo App()->theme->baseUrl; ?>/css/category-menu-styles.css" rel="stylesheet" type="text/css" media="all"/>    
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.js"></script> 
     <script src="<?php echo App()->theme->baseUrl; ?>/js/jquery.openCarousel.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/easing.js"></script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/move-top.js"></script>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/category-menu-styles.js"></script>
 </head>
 <body>
     <div class="header">
