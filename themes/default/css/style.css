@@ -1589,3 +1589,5 @@ body {
     font-weight:400;
     font-family: 'Libre Baskerville', serif;
 }
+
+.nav>li>a.hover{background: none;}

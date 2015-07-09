@@ -50,16 +50,17 @@ $original = str_replace('medium', 'original', $product->image);
                         </div>
                         <div class="available">
                             <ul>
-                                <li><span>Model:</span> &nbsp; Model 1</li>
-                                <li><span>Shipping Weight:</span>&nbsp; 75.58 kg</li>
-                                <li><span>Units in Stock:</span>&nbsp; 566</li>
+                                <li><span>Phân Loại:</span> &nbsp; Model 1</li>
+                                <li><span>Xuất xứ</span>&nbsp; Vietnam</li>
+                                <li><span>Thời gian bảo hành</span>&nbsp; 2 năm</li>
+                                <li><span>Tính năng</span>&nbsp; <?php echo $product->description; ?></li>
                             </ul>
                         </div>
 
 
                         <div class="colors-share">                            
                             <div class="social-share">
-                                <h4>Share Product</h4>
+                                <h4>Chia sẽ</h4>
                                 <ul>
                                     <li><a class="share-face" href="#"> </a></li>
                                     <li><a class="share-twitter" href="#"> </a></li>

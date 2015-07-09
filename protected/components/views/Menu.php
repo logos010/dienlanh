@@ -7,7 +7,7 @@ $requestUrl = App()->request->url;
         $submenu = $v->hasChild($v->id);
         ?>
         <li>
-            <a href=""><?php echo $v->name; ?></a>
+            <a href="<?php echo App()->controller->createUrl($v->url); ?>"><?php echo $v->name; ?></a>
                 <?php if ($submenu != null): ?>
                 <ul>
         <?php foreach ($submenu as $sk => $sv): ?>
