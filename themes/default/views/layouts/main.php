@@ -11,12 +11,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
     <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="<?php echo App()->theme->baseUrl; ?>/css/category-menu-styles.css" rel="stylesheet" type="text/css" media="all"/>    
+    <link href="<?php echo App()->theme->baseUrl; ?>/css/category-menu-styles.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href='<?php echo App()->theme->baseUrl; ?>/css/jquery.bxslider.css' rel='stylesheet' type='text/css'>                
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.js"></script> 
     <script src="<?php echo App()->theme->baseUrl; ?>/js/jquery.openCarousel.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/easing.js"></script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/move-top.js"></script>
-    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/category-menu-styles.js"></script>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/category-menu-styles.js"></script>    
 </head>
 <body>
     <div class="header">
@@ -51,30 +52,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <!-- end of menu -->
 
-            <?php 
-                $sliderPage = App()->request->url; 
-                if ($sliderPage == '/dienlanh/' || $sliderPage == '/dienlanh/product/'):
-            ?>
-            <!--  Header -->
-            <div class="header_bottom">
-                <?php
-                $dir = $_SERVER['DOCUMENT_ROOT']."/dienlanh/upload/slider/banner";
-                $file = (scandir($dir));                
-                for($i=2, $n=count($file); $i<$n; $i++){
-//                    echo $file[$i]."<br/>";
-                }
-                ?>
-<!--                <div class="slider-text">
-                    <h2>Lorem Ipsum Placerat <br/>Elementum Quistue Tunulla Maris</h2>
-                    <p>Vivamus vitae augue at quam frigilla tristique sit amet<br/> acin ante sikumpre tisdin.</p>
-                    <a href="#">Sitamet Tortorions</a>
+            <?php
+            $sliderPage = App()->request->url;
+            if ($sliderPage == '/dienlanh/' || $sliderPage == '/dienlanh/product/'):
+                ?>                
+                <!--  Header -->
+                <div class="header_bottom">
+                    <?php
+                    $dir = webroot() . "/upload/slider/banner/";
+                    $file = scandir($dir);
+                    ?>
+                    <ul class="bxslider">
+                        <?php
+                        for ($i = 2, $n = count($file); $i < $n; $i++):
+                            ?>
+                            <li>
+                                <img width="1275" src="<?php echo BASE_URL . "/upload/slider/banner/" . $file[$i]; ?>" />
+                            </li>
+                    <?php endfor; ?>
+                    </ul>
                 </div>
-                <div class="slider-img">
-                    <img src="<?php echo App()->theme->baseUrl; ?>/images/slider-img.png" alt="" />
-                </div>
-                <div class="clear"></div>-->
-            </div>
-            <!-- end of header-->
+                <!-- end of header-->
             <?php endif; ?>
         </div>
     </div>
@@ -100,9 +98,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>		
         </div>
     </div>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.bxslider.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $().UItoTop({easingType: 'easeOutQuart'});
+
+             $('.bxslider').bxSlider({
+                 auto: true
+             });
         });
 
         $("form#search").submit(function () {
@@ -125,4 +128,3 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/navigation.js"></script>    
 </body>
 </html>
-
