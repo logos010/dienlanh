@@ -8,6 +8,7 @@ $this->menu = array(
     array('label' => 'Manage Product', 'url' => array('admin')),
 );
 ?>
+<script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.cycle2.min.js"></script>
 
 <div class="content_top">
     <div class="wrap">
@@ -43,28 +44,34 @@ $this->menu = array(
                     ));
                     ?>
                 </div>
-                	
+
                 <div class="buters-guide">
-                    <h3>Buyers Guide</h3>
-                    <p><span>We want you to be happy with your purchase.</span></p>	
-                    <p>So we're committed to giving you all the tools to make the right decision with minimum fuss. </p>
-                </div>	
-                <div class="add-banner">
-                    <img src="web/images/camera.png" alt="" />
-                    <div class="banner-desc">
-                        <h4>Electronics</h4>
-                        <a href="#">More Info</a>
+                    <h3>Các hoạt động</h3>
+                    <div class="slideshow vertical" 
+                         data-cycle-fx=carousel
+                         data-cycle-timeout=0
+                         data-cycle-next="#next3"
+                         data-cycle-prev="#prev3"
+                         data-cycle-pager="#pager3"
+                         data-cycle-carousel-visible=2
+                         data-cycle-carousel-vertical=true
+                         >
+                        <?php
+                        $dir = webroot() . "/upload/slider/mini_slider/";
+                        $file = scandir($dir);
+                        for ($i = 2, $n = count($file); $i < $n; $i++):
+                        ?>
+                        <img src="<?php echo BASE_URL . "/upload/slider/mini_slider/" . $file[$i]; ?>" />
+                        <?php endfor; ?>
                     </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="add-banner add-banner2">
-                    <img src="web/images/computer.png" alt="" />
-                    <div class="banner-desc">
-                        <h4>Computers</h4>
-                        <a href="#">More Info</a>
+
+                    <div class=center>
+                        <a href=# id=prev3><< </a>
+                        <a href=# id=next3> >> </a>
                     </div>
-                    <div class="clear"></div>
-                </div>
+
+                    <div class="cycle-pager" id=pager3></div> 
+                </div>	                
             </div>
 
             <!-- content product grid -->
