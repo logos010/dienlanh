@@ -12,12 +12,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
     <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="<?php echo App()->theme->baseUrl; ?>/css/category-menu-styles.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href='<?php echo App()->theme->baseUrl; ?>/css/jquery.bxslider.css' rel='stylesheet' type='text/css'>                
+    <link href='<?php echo App()->theme->baseUrl; ?>/css/jquery.bxslider.css' rel='stylesheet' type='text/css'>    
+    <!--<link href='<?php echo App()->theme->baseUrl; ?>/css/default.css' rel='stylesheet' type='text/css'>-->
+    <link href='<?php echo App()->theme->baseUrl; ?>/css/component.css' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.js"></script> 
     <script src="<?php echo App()->theme->baseUrl; ?>/js/jquery.openCarousel.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/easing.js"></script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/move-top.js"></script>
-    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/category-menu-styles.js"></script>    
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/category-menu-styles.js"></script>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jssor.js"></script>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jssor.slider.js"></script>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/cbpShop.min.js"></script>    
 </head>
 <body>
     <div class="header">

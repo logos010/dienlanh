@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs = array(
-    'Sản phẩm'
+    'S?n ph?m'
 );
 
 $this->menu = array(
@@ -8,11 +8,9 @@ $this->menu = array(
     array('label' => 'Manage Product', 'url' => array('admin')),
 );
 ?>
-<script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.cycle2.min.js"></script>
-
 <div class="content_top">
     <div class="wrap">
-        <h3>Sản Phẩm Mới Nhất</h3>
+        <h3>S?n Ph?m M?i Nh?t</h3>
     </div>
     <div class="line"> </div>
     <div class="wrap">
@@ -47,63 +45,87 @@ $this->menu = array(
 
                 <div class="buters-guide">
                     <h3>Các hoạt động</h3>
-                    <div class="slideshow vertical" 
-                         data-cycle-fx=carousel
-                         data-cycle-timeout=0
-                         data-cycle-next="#next3"
-                         data-cycle-prev="#prev3"
-                         data-cycle-pager="#pager3"
-                         data-cycle-carousel-visible=2
-                         data-cycle-carousel-vertical=true
-                         >
-                        <?php
-                        $dir = webroot() . "/upload/slider/mini_slider/";
-                        $file = scandir($dir);
-                        for ($i = 2, $n = count($file); $i < $n; $i++):
-                        ?>
-                        <img src="<?php echo BASE_URL . "/upload/slider/mini_slider/" . $file[$i]; ?>" />
-                        <?php endfor; ?>
-                    </div>
+                    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 300px; height: 150px;">
 
-                    <div class=center>
-                        <a href=# id=prev3><< </a>
-                        <a href=# id=next3> >> </a>
-                    </div>
+                        <!-- Loading Screen -->
+                        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                                 background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+                            </div>
+                            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                                 top: 0px; left: 0px;width: 100%;height:100%;">
+                            </div>
+                        </div>
 
-                    <div class="cycle-pager" id=pager3></div> 
+                        <!-- Slides Container -->
+                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 255px; height: 300px;
+                             overflow: hidden;">
+                             <?php
+                             $dir = webroot() . "/upload/slider/mini_slider/";
+                             $file = scandir($dir);
+                             for ($i = 2, $n = count($file); $i < $n; $i++):
+                                 ?>
+                                <div><img u="image" src="<?php echo BASE_URL . "/upload/slider/mini_slider/" . $file[$i]; ?>" /></div>
+                            <?php endfor; ?>
+                        </div>
+
+                        <!-- Arrow Left -->
+                        <span u="arrowleft" class="jssora08l" style="top: 8px; left: 90px;">
+                        </span>
+                        <!-- Arrow Right -->
+                        <span u="arrowright" class="jssora08r" style="bottom: -145px; left: 90px;">
+                        </span>
+                    </div>
                 </div>	                
             </div>
 
             <!-- content product grid -->
             <div class="content-bottom-right">
                 <h3>Thông Tin Sản Phẩm</h3>
-                <?php
-                $i = 1;
-                foreach ($products as $k => $v):
-                    if ($i % 3 == 0):
-                        ?>
-                        <div class="section group">
-                        <?php endif; ?>
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <h4><a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>"><?php echo $v->name; ?></a></h4>
-                            <a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>"><img src="<?php echo $v->image ?>" alt="<?php echo $v->alias; ?>" /></a>
-                            <div class="price-details">
-                                <div class="price-number">
-                                    <p><span class="rupees">$839.93 </span></p>
-                                </div>
-                                <div class="add-cart">								
-                                    <h4><a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>">More Info</a></h4>
-                                </div>
-                                <div class="clear"></div>
-                            </div>					 
-                        </div>
-                        <?php if (($i % 3) == 0): ?>
-                        </div>
-                    <?php endif; ?>
-                    <?php $i++; ?>
-                <?php endforeach; ?>
+                <div id="cbp-pgcontainer" class="cbp-pgcontainer">
+                    <ul class="cbp-pggrid">
+                        <?php foreach ($products as $k => $v): ?>
+                        <li>
+                            <div class="cbp-pgcontent">
+                                <div class="cbp-pgitem">
+                                    <div class="cbp-pgitem-flip">
+                                        <a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>">
+                                            <img src="<?php echo $v->image ?>" alt="<?php echo $v->alias; ?>" />
+                                        </a>
+                                    </div>
+                                </div><!-- /cbp-pgitem -->                                
+                            </div><!-- cbp-pgcontent -->
+                            <div class="cbp-pginfo">
+                                <div><?php echo $v->name; ?></div>
+                                <span class="cbp-pgprice"><?php echo number_format($v->price, 0, '', ',') ?><sup>đ</sup></span>
+                            </div>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul><!-- /cbp-pggrid -->
+                </div><!-- /cbp-pgcontainer -->
             </div>
             <div class="clear"></div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        var options = {
+            $AutoPlay: true, //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+            $PlayOrientation: 2, //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+            $DragOrientation: 2, //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+
+            $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$, //[Requried] Class to create arrow navigator instance
+                $ChanceToShow: 2, //[Required] 0 Never, 1 Mouse Over, 2 Always
+                $AutoCenter: 1, //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+            }
+        };
+
+        var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+    });
+    
+    var shop = new cbpShop( document.getElementById( 'cbp-pgcontainer' ) ); 
+</script>
