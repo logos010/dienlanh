@@ -2,7 +2,7 @@
 
 class NewsController extends ControllerBase{
     
-    public $defaultController = 'index';
+    public $defaultController = 'index';    
     
     public function actionCate($tid){
         $news = News::model()->with(array(
