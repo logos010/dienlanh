@@ -5,7 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
 /* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+html,body,div,span,applet,object,iframe,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0;padding:0;}
 blockquote,q{quotes:none;}
@@ -1594,20 +1594,33 @@ body {
 
 /*slider*/
 .jssora08l, .jssora08r {
-        display: block;
-        position: absolute;
-        /* size of arrow element */
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        background: url(../images/a08.png) no-repeat;
-        overflow: hidden;
-        opacity: .4;
-        filter: alpha(opacity=40);
-    }
-    .jssora08l { background-position: -5px -35px; }
-    .jssora08r { background-position: -65px -35px; }
-    .jssora08l:hover { background-position: -5px -35px; opacity: .8; filter:alpha(opacity=80); }
-    .jssora08r:hover { background-position: -65px -35px; opacity: .8; filter:alpha(opacity=80); }
-    .jssora08l.jssora08ldn { background-position: -5px -35px; opacity: .3; filter:alpha(opacity=30); }
-    .jssora08r.jssora08rdn { background-position: -65px -35px; opacity: .3; filter:alpha(opacity=30); }
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: url(../images/a08.png) no-repeat;
+    overflow: hidden;
+    opacity: .4;
+    filter: alpha(opacity=40);
+}
+.jssora08l { background-position: -5px -35px; }
+.jssora08r { background-position: -65px -35px; }
+.jssora08l:hover { background-position: -5px -35px; opacity: .8; filter:alpha(opacity=80); }
+.jssora08r:hover { background-position: -65px -35px; opacity: .8; filter:alpha(opacity=80); }
+.jssora08l.jssora08ldn { background-position: -5px -35px; opacity: .3; filter:alpha(opacity=30); }
+.jssora08r.jssora08rdn { background-position: -65px -35px; opacity: .3; filter:alpha(opacity=30); }
+
+/*news*/
+h1 {color: #e44f2b}
+.news-date{
+    margin-bottom: 10px;
+    text-align: right;
+}
+.article{
+    line-height: 1.6em
+}
+.article p{
+    margin: 15px 0 15px
+}
