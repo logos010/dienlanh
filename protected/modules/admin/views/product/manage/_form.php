@@ -36,22 +36,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 
                 if ($model->image != '') {
                     echo CHtml::image(BASE_URL . '/' . $model->image, $v->name, array('width' => '80'));
-                }
-                echo $form->textFieldRow($model, 'quantity', array(
-                    'class' => 'span10',
-                    'onkeyup' => "$('#Product_quantity').val($.number($(this).val()));"
-                ));
+                }                
 
                 echo $form->textFieldRow($model, 'price', array(
                     'class' => 'span10',
                     'onkeyup' => "$('#Product_price').val($.number($(this).val()));"
                 ));
-                echo $form->textFieldRow($model, 'discount', array(
-                    'class' => 'span10',
-//                    'onkeyup' => "$('#Product_discount').val($.number($(this).val()));"
-                ));
-                echo $form->textFieldRow($model, 'sale_promotion', array('class' => 'span10'));
-//                echo $form->labelEx($model, 'status');
+
                 echo $form->dropDownlistRow($model, 'status', array(1 => 'Active', 0 => 'Inactive'), array('class' => 'span10'));
                 echo $form->dropDownlistRow($model, 'promote', array(1 => 'Active', 0 => 'Inactive'), array('class' => 'span10'));
                 ?>                

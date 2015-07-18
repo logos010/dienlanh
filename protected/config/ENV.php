@@ -5,7 +5,7 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 //defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
 
 define('BASE_URL', 'http://localhost/dienlanh');
-//define('BASE_URL', 'D://htdocs/TsanShop/');
+//define('BASE_URL', 'http://dienlanhbariavungtau.com');
 define('DB_CONNECTION', 'mysql:host=127.0.0.1;dbname=dienlanh');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');

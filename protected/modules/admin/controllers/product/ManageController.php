@@ -52,6 +52,9 @@ class ManageController extends ControllerBase {
             $model->sku = 'SKU';
             $model->create_time = UDate::getCurrentDate('full');
             $model->detail = $_POST['Product']['detail'];
+            $model->discount = 0;
+            $model->sale_promotion = 0;
+            $model->quantity = 1;
 
             if ($model->save()) {
                 $this->setFlash('Product has been created.');
@@ -167,10 +170,12 @@ class ManageController extends ControllerBase {
         echo UString::toAlias($_POST['Product']['name']);
     }
 
-    public function actionTest(){
-        echo $uri = webroot() ."/upload/".date('Y/m');
+    public function actionTest() {
+        echo $uri = webroot() . "/upload/" . date('Y/m');
         echo '<br/>';
-        var_dump(is_dir($uri));echo '<br/>';
+        var_dump(is_dir($uri));
+        echo '<br/>';
         var_dump(mkdir($uri, 0777, true));
     }
+
 }

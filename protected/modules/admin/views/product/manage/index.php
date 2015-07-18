@@ -16,11 +16,6 @@ $this->breadcrumbs = array(
         </h3>
     </div>
     <div class="panel-body">
-        <p>
-            You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-            or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-        </p>
-
         <?php
         /* echo CHtml::link('Advanced Search','#',array('class'=>'search-button'));
           echo '<div class="search-form" style="display:none">';
@@ -96,14 +91,7 @@ $this->breadcrumbs = array(
                 ),
                 array(
                     'class' => 'bootstrap.widgets.TbButtonColumn',
-                    'template' => '{gallery} {update} {delete}',
-                    'buttons' => array(
-                        'gallery' => array(
-                            'label' => 'Gallery',
-                            'url' => 'url("/admin/product/gallery/index", array("pid" => $data->id))',
-                            'icon' => 'icon-picture',
-                        )
-                    )
+                    'template' => '{update} {delete}',
                 )
             ),
         ));

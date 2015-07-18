@@ -9,9 +9,13 @@ class ProductController extends ControllerBase {
     }
 
     public function actionIndex() {
-        $products = Product::model()->with(array(
-                    'pTerm' => array('condition' => 'tid = 1')
-                ))->findAll(array(
+        /* $products = Product::model()->with(array(
+          'pTerm' => array('condition' => 'tid = 1')
+          ))->findAll(array(
+          'condition' => 't.status = 1',
+          )); */
+
+        $products = Product::model()->findAll(array(
             'condition' => 't.status = 1',
         ));
 
@@ -114,7 +118,7 @@ class ProductController extends ControllerBase {
         cssFile(App()->theme->baseUrl . "/css/etalage.css");
         scriptFile(App()->theme->baseUrl . '/js/bootstrap.js');
         scriptFile(App()->theme->baseUrl . "/js/easyResponsiveTabs.js");
-                
+
         $product = Product::model()->findByPk($pid);
 
         $gallery = ProductGallery::model()->findAll(array(
@@ -123,7 +127,7 @@ class ProductController extends ControllerBase {
                 ':pid' => $pid,
             )
         ));
-        
+
         //load recommend product
         $criteria = new CDbCriteria();
         //$criteria->condition = "t.id != ".intval($pid); 
@@ -134,13 +138,13 @@ class ProductController extends ControllerBase {
         }
         $criteria->group = "t.id";
         $criteria->having = "t.id <> " . $pid;
-        
+
         //get other products
         $criteria = new CDbCriteria();
         $criteria->condition = "id <> " . $pid;
         $criteria->limit = "3";
         $otherProducts = Product::model()->findAll($criteria);
-        
+
         $this->render('detail', array(
             'product' => $product,
             'gallery' => $gallery,
@@ -160,12 +164,14 @@ class ProductController extends ControllerBase {
         $currentProducts = null;
         foreach ($product as $k => $v)
             $currentProducts .= $v->id . ",";
-        $currentProducts = rtrim($currentProducts, ',');
+        if (!is_null($currentProducts)) {
+            $currentProducts = rtrim($currentProducts, ',');
 
-        $randomProducts = Product::model()->findAll(array(
-            'condition' => 'id NOT IN (' . $currentProducts . ')',
-            'order' => 'create_time DESC'
-        ));
+            $randomProducts = Product::model()->findAll(array(
+                'condition' => 'id NOT IN (' . $currentProducts . ')',
+                'order' => 'create_time DESC'
+            ));
+        }
 
         $this->render('loadProductByCate', array(
             'products' => $product,

@@ -6,10 +6,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <head>
-    <title>Free Ecomm Template Website Template | Home :: w3layouts</title>
+    <title>Điện Lạnh Hoàng Thọ - Bà Rịa Vũng Tàu| Home </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="<?php echo App()->theme->baseUrl; ?>/images/HT_logo.ico">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
     <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="<?php echo App()->theme->baseUrl; ?>/css/category-menu-styles.css" rel="stylesheet" type="text/css" media="all"/>
     <link href='<?php echo App()->theme->baseUrl; ?>/css/jquery.bxslider.css' rel='stylesheet' type='text/css'>    

@@ -88,7 +88,7 @@ class Product extends ProductBase {
             array('uri, image', 'length', 'max' => 255),
             array('sku', 'length', 'max' => 15),
             array('update', 'safe'),
-            array('image', 'file', 'types' => 'jpg, gif, png, jpeg', 'allowEmpty' => !$this->isNewRecord, 'maxSize' => 1024 * 1024 * 1),
+            array('image', 'file', 'types' => 'jpg, gif, png, jpeg', 'allowEmpty' => !$this->isNewRecord, ),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, name, alias, uri, image, sku, quantity, price, wholesale_price, bought, discount, sale_promotion, like, subscripbe, description, detail, status, create, update', 'safe', 'on' => 'search'),

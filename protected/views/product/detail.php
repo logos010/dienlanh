@@ -5,7 +5,7 @@ $this->breadcrumbs = array(
 
 $original = str_replace('medium', 'original', $product->image);
 ?>
-
+<script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.elevateZoom-3.0.8.min.js"></script>
 <!-- PRODUCT DETAIL-->
 <div class="content_top">
     <div class="wrap">
@@ -20,28 +20,21 @@ $original = str_replace('medium', 'original', $product->image);
                         <div class="clear"> </div>
                     </ul>
 
-                    <div class="product-details">	
+                    <div class="product-details">                        
                         <div class="grid images_3_of_2">
-                            <ul id="etalage">
-                                <li>
-                                    <a href="#">
-                                        <img class="etalage_thumb_image" src="<?php echo $product->image; ?>" />
-                                        <img class="etalage_source_image" src="<?php echo str_replace('medium', 'original', $product->image) ?>" alt="<?php echo $product->alias ?>" title="<?php echo $product->name; ?>" alt="<?php echo $product->alias ?>" />
-                                    </a>
-                                </li>
-                                <!--<li>
-                                           <img class="etalage_thumb_image" src="web/images/preview-small-img2.png"  />
-                                           <img class="etalage_source_image" src="web/images/preview-large-img2.jpg" title="" />
-                                       </li>
-                                       <li>
-                                           <img class="etalage_thumb_image" src="web/images/preview-small-img3.png"  />
-                                           <img class="etalage_source_image" src="web/images/preview-large-img3.jpg" />
-                                       </li>
-                                       <li>
-                                           <img class="etalage_thumb_image" src="web/images/preview-small-img4.png" />
-                                           <img class="etalage_source_image" src="web/images/preview-large-img4.jpg" />
-                                       </li>-->
-                            </ul>
+                            <?php $zoom = str_replace('medium', 'original', $product->image); ?>
+                            <img id="zoom_01" src='<?php echo $product->image; ?>' data-zoom-image="<?php echo $zoom; ?>" width="450"/>
+                            <script>
+                                $('#zoom_01').elevateZoom({scrollZoom : true});
+                            </script>
+                            <!--                            <ul id="etalage">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <img class="etalage_thumb_image" src="<?php echo $product->image; ?>" />
+                                                                    <img class="etalage_source_image" src="<?php echo str_replace('medium', 'original', $product->image) ?>" alt="<?php echo $product->alias ?>" title="<?php echo $product->name; ?>" alt="<?php echo $product->alias ?>" />
+                                                                </a>
+                                                            </li>
+                                                        </ul>-->
                         </div>
                         <div class="desc span_3_of_2">
                             <h2><?php echo $product->name; ?></h2>
@@ -83,29 +76,14 @@ $original = str_replace('medium', 'original', $product->image);
                             </ul>
                             <div class="resp-tabs-container">
                                 <div class="product-specifications">
-                                    <ul>
-                                        <li>
-                                            <span class="specification-heading">Body type</span> 
-                                            <span>Metal</span>
-                                            <div class="clear"></div>
-                                        </li>
-                                        <li><span class="specification-heading">Spin Speed (rpm)</span> <span>0/400/800/1000/1200</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Machine weight (kg)</span> <span>75</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Wash System</span> <span>Tumble wash</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Door diameter (mm)</span> <span>300</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Dimensions (w*d*h) without packing</span> <span>595x595x850</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Power Supply</span> <span>230V, 50Hz, 16Amps</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Motor (Watts)</span> <span>440 for Wash/490 for Spin</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Drum basket</span> <span>stainless steel</span><div class="clear"></div></li>
-                                        <li><span class="specification-heading">Adjustable Feet</span> <span>4 </span><div class="clear"></div></li>
-                                    </ul>
+                                    <?php echo $product->detail; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="rightsidebar span_3_of_1 sidebar">
-                    <h3>Popular Products</h3>
+                    <h3>Tham Khảo</h3>
                     <ul class="popular-products">
                         <?php foreach ($other as $k => $v): ?>
                             <li>

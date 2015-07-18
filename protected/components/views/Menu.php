@@ -7,16 +7,20 @@ $requestUrl = App()->request->url;
         $submenu = $v->hasChild($v->id);
         ?>
         <li>
-            <a href="<?php echo App()->controller->createUrl($v->url); ?>"><?php echo $v->name; ?></a>
-                <?php if ($submenu != null): ?>
+            <?php if ($v->url == "//"): ?>
+                <a href="/"><?php echo $v->name; ?></a>
+            <?php else: ?>
+                <a href="<?php echo App()->controller->createUrl($v->url); ?>"><?php echo $v->name; ?></a>
+            <?php endif; ?>
+            <?php if ($submenu != null): ?>
                 <ul>
-        <?php foreach ($submenu as $sk => $sv): ?>
+                    <?php foreach ($submenu as $sk => $sv): ?>
                         <li>
                             <a href="<?php echo App()->controller->createUrl($sv->url) ?>"><?php echo $sv->name ?></a>
                         </li>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </ul>
-        <?php endif; ?>
+            <?php endif; ?>
         </li>
-<?php endforeach; ?>
+    <?php endforeach; ?>
 </ul>

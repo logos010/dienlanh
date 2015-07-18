@@ -10,7 +10,7 @@ $this->menu = array(
 ?>
 <div class="content_top">
     <div class="wrap">
-        <h3>S?n Ph?m M?i Nh?t</h3>
+        <h3>Sản Phẩm Mới Nhất</h3>
     </div>
     <div class="line"> </div>
     <div class="wrap">
@@ -85,21 +85,21 @@ $this->menu = array(
                 <div id="cbp-pgcontainer" class="cbp-pgcontainer">
                     <ul class="cbp-pggrid">
                         <?php foreach ($products as $k => $v): ?>
-                        <li>
-                            <div class="cbp-pgcontent">
-                                <div class="cbp-pgitem">
-                                    <div class="cbp-pgitem-flip">
-                                        <a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>">
-                                            <img src="<?php echo $v->image ?>" alt="<?php echo $v->alias; ?>" />
-                                        </a>
-                                    </div>
-                                </div><!-- /cbp-pgitem -->                                
-                            </div><!-- cbp-pgcontent -->
-                            <div class="cbp-pginfo">
-                                <div><?php echo $v->name; ?></div>
-                                <span class="cbp-pgprice"><?php echo number_format($v->price, 0, '', ',') ?><sup>đ</sup></span>
-                            </div>
-                        </li>
+                            <li>
+                                <div class="cbp-pgcontent">
+                                    <div class="cbp-pgitem">
+                                        <div class="cbp-pgitem-flip">
+                                            <a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)); ?>">
+                                                <img src="<?php echo $v->image ?>" alt="<?php echo $v->alias; ?>" />
+                                            </a>
+                                        </div>
+                                    </div><!-- /cbp-pgitem -->                                
+                                </div><!-- cbp-pgcontent -->
+                                <div class="cbp-pginfo">
+                                    <div><?php echo $v->name; ?></div>
+                                    <span class="cbp-pgprice"><?php echo number_format($v->price, 0, '', ',') ?><sup>đ</sup></span>
+                                </div>
+                            </li>
                         <?php endforeach; ?>
                     </ul><!-- /cbp-pggrid -->
                 </div><!-- /cbp-pgcontainer -->
@@ -126,6 +126,6 @@ $this->menu = array(
 
         var jssor_slider1 = new $JssorSlider$("slider1_container", options);
     });
-    
-    var shop = new cbpShop( document.getElementById( 'cbp-pgcontainer' ) ); 
+
+    var shop = new cbpShop(document.getElementById('cbp-pgcontainer'));
 </script>
