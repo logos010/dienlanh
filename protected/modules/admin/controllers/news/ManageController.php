@@ -62,6 +62,8 @@ class ManageController extends ControllerBase {
         $model->strip_tag = true;
         if (isset($_GET['News'])) {
             $model->attributes = $_GET['News'];
+            $model->promote = 0;
+            $model->type = 0;
             $model->alias = UString::toAlias($model->title);
             $model->quote = ucwords($model->quote);
         }
@@ -70,6 +72,8 @@ class ManageController extends ControllerBase {
 
         if (isset($_POST['News'])) {
             $model->attributes = $_POST['News'];
+            $model->promote = 0;
+            $model->type = 0;
             if ($model->save()) {
                 $msg = "Content has been updated: <a href=\"" . url($model->uri) . "\" target=\"_blank\">" . $model->uri . "</a>";
                 $this->setFlash($msg);
@@ -100,6 +104,8 @@ class ManageController extends ControllerBase {
 
         if (isset($_POST['News'])) {
             $model->attributes = $_POST['News'];
+            $model->promote = 0;
+            $model->type = 0;
             $model->stripTagContent();
 
             if (isset($_GET['desc'])) {
@@ -155,7 +161,7 @@ class ManageController extends ControllerBase {
      * Manages all models.
      */
     public function actionIndex() {
-        
+
         $model = new News('search');
         $model->unsetAttributes();  // clear any default values
 
@@ -166,7 +172,7 @@ class ManageController extends ControllerBase {
         if (isset($_GET['News'])) {
             $model->attributes = $_GET['News'];
         }
-        
+
         $this->render('index', array(
             'model' => $model,
         ));

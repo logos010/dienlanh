@@ -62,8 +62,8 @@ if ($model->isNewRecord || !isset($_GET['desc'])) {
     echo '<div class="span3">';
     echo $form->dropDownlistRow($model, 'status', array('0' => 'Inactive', '1' => 'Active', '-1' => 'Request Delete'));
     echo $form->textFieldRow($model, 'publish_time');
-    echo $form->dropDownlistRow($model, 'promote', array(0 => 'Bình thường', 1 => 'Nổi Bật', 2 => 'Top Nổi bật'), array('hint' => '( Tin nổi bật )'));
-    echo $form->dropDownlistRow($model, 'type', array(0 => 'Tin Tức', 1 => 'Hình ảnh', 2 => 'Video'), array('onchange' => 'if($(this).val()==2) {$("#News_strip_tag").attr("checked", false)} else {$("#News_strip_tag").attr("checked", true)}'));
+    //echo $form->dropDownlistRow($model, 'promote', array(0 => 'Bình thường', 1 => 'Nổi Bật', 2 => 'Top Nổi bật'), array('hint' => '( Tin nổi bật )'));
+    //echo $form->dropDownlistRow($model, 'type', array(0 => 'Tin Tức', 1 => 'Hình ảnh', 2 => 'Video'), array('onchange' => 'if($(this).val()==2) {$("#News_strip_tag").attr("checked", false)} else {$("#News_strip_tag").attr("checked", true)}'));
 
     echo '</div>
 			</div>';
